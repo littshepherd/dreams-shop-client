@@ -1,12 +1,13 @@
 import { Button } from "@mui/material";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function ProductCard(
-  { image, name, price } //: { image: any }
+  { id, image, name, price } //: { image: any }
 ) {
   const [imageData, setImageData] = useState("");
-
+  const pathname = usePathname();
   const setImage = async (image) => {
     if (image) {
       const response = await fetch(`${image}`);
@@ -39,13 +40,18 @@ export default function ProductCard(
         sx={{
           textColor: "white",
           color: "white",
-          paddingLeft: 0,
+          padding: 0,
           backgroundColor: "purple",
           width: "100%",
           height: "3rem",
         }}
       >
-        Ver Producto
+        <Link
+          className="inline-block align-end  h-full w-full "
+          href={`${pathname}/${id}`}
+        >
+          Ver Producto
+        </Link>
       </Button>
     </div>
   );

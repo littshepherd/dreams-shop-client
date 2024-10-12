@@ -76,11 +76,12 @@ export default function Create() {
     });
 
     const r2Response = await uploadImage(formData);
-
+    console.log(r2Response);
+    data.images = [];
     r2Response.forEach((response, index) => {
       console.log(formData.get("images"));
       response.$metadata.httpStatusCode === 200 &&
-        setValue(`images.${index}`, {
+        data.images.push({
           image_url: "images/" + namedImages[index].name,
         });
     });
