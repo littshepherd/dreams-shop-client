@@ -57,6 +57,6 @@ export async function getProductById(id: number) {
   const response = await axios.get(`${BACKEND_API_URL}/products/${id}`);
 
   const { data } = response;
-
+  console.log(data);
   return data;
 }
